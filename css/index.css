@@ -12282,10 +12282,10 @@ span.categoryBar-list-count::after {
   right: -100%;
 }
 li.categoryBar-list-item:nth-child(1) {
-  background: url('https://cdn.jsdelivr.net/gh/Akilarlxh/Akilarlxh.github.io@v3.3.3_2/img/cover1.webp');
+  background: ;
 }
 li.categoryBar-list-item:nth-child(1)>span::after {
-  content: '魔改教程' !important;
+  content: '' !important;
 }
 li.categoryBar-list-item {
   width: 32.3% !important;
