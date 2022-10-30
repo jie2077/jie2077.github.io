@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
       menusWidth = $menusEle && $menusEle.offsetWidth
       searchWidth = $searchEle && $searchEle.offsetWidth
     }
-    const $nav = document.getElementById('nav')
+    const $nav = document.getElementById('menu-container')
     let t
+    console.log('$nav.offsetWidth',$nav.offsetWidth);
     if (window.innerWidth < 768) t = true
     else t = blogNameWidth + menusWidth + searchWidth > $nav.offsetWidth - 120
 
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 初始化header
   const initAdjust = () => {
     adjustMenu()
-    document.getElementById('nav').classList.add('show')
+    document.getElementById('menu-container').classList.add('show')
   }
 
   // sidebar menus
@@ -356,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         $header.classList.add('nav-fixed')
         if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
-          $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
+          $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
         }
       } else {
         if (currentTop === 0) {
@@ -366,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (document.body.scrollHeight <= innerHeight) {
-        $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
+        $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
       }
     }, 200))
 
@@ -558,12 +559,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fontSizeVal >= 20) return
         newValue = fontSizeVal + 1
         document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-        !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+        !document.getElementById('menu-container').classList.contains('hide-menu') && adjustMenu(true)
       } else {
         if (fontSizeVal <= 10) return
         newValue = fontSizeVal - 1
         document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-        document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+        document.getElementById('menu-container').classList.contains('hide-menu') && adjustMenu(true)
       }
 
       saveToLocal.set('global-font-size', newValue, 2)
@@ -824,7 +825,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.refreshFn = function () {
     initAdjust()
-
     if (GLOBAL_CONFIG_SITE.isPost) {
       GLOBAL_CONFIG_SITE.isToc && tocFn()
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
@@ -835,7 +835,6 @@ document.addEventListener('DOMContentLoaded', function () {
       addLastPushDate()
       toggleCardCategory()
     }
-
     sidebarFn()
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     addHighlightTool()
